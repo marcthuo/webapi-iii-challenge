@@ -10,7 +10,7 @@ server.use(express.json());
 server.use(helmet());
 server.use(morgan('dev'));
 
-
+module.exports = server;
 
 
 
