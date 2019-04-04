@@ -4,7 +4,7 @@ module.exports = {
   get,
   getById,
   getUserPosts,
-  insert,
+  insert, 
   update,
   remove,
 };
