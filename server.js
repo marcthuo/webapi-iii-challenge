@@ -11,7 +11,8 @@ server.use(express.json());
 server.use(helmet());
 server.use(morgan('dev'));
 server.use('/api/user', userRouter);
-server.use('/api/post', postRouter)
+server.use('/api/post', postRouter);
+// server.use(single('kelly'));
 
 server.get('/',  (req,res) => {
     res.send('API is up and running....')

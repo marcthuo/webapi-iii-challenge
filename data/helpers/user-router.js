@@ -4,9 +4,10 @@ const userDb = require('./userDb.js');
 
 const router = express.Router();
 
+//check
 router.get('/', async (req, res) => {
     try {
-        const user = await userDb.find();
+        const user = await userDb.get();
         res.status(200).json(user);
     } catch (error) {
         console.log(error);
@@ -16,15 +17,16 @@ router.get('/', async (req, res) => {
     }  
 });
 
+//check
 router.get('/:id', async (req, res) => {
     const {id} = req.params;
     try {
         const users = await userDb.getById(id);
         if (users) {
-            res.status(200).json(users)
+            res.status(200).json(users);
         } else {
             res.status(404).json({
-                message: `The post with the specified ${id} does not exist.`
+                message: `The user with the specified ${id} does not exist.`
             })
         }
     } catch (err) {
@@ -34,6 +36,8 @@ router.get('/:id', async (req, res) => {
         });
     }
 });
+
+
 
 
 
