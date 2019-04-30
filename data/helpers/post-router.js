@@ -38,9 +38,32 @@ router.get('/:id', async (req, res) => {
 });
 
 
+router.post('/', async (req, res) => {
+    const {text, user_id} = req.body;
+    try {
+        const post = await postDb.insert(text, user_id);
+        res.status(201).json(post)
+    } catch (err) {
+        console.log(err);
+        if (error.errno === 19) {
+            message = "please provide both the text and user_id";
+          }
+        res.status(500).json({
+            message: ' There was an error adding post'
+        });
+    }
+});
 
-
-
-
+router.put('/', async (req, res) => {
+    const {id} = req.params;
+    const updateNew = req.body;
+    try {
+        const hub = await postDb.update(id, updateNew)
+    } catch (err) {
+        res.status(500).json({ 
+        message: 'An error has occurred, no updates were logged'
+        });
+    }
+});
 
 module.exports = router;
